@@ -1,0 +1,37 @@
+<div class="container" style="margin-top: 50px;">
+  <div class="card profile-card" style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+    <div style="background: #00D1B2; padding: 40px; text-align: center; color: white;">
+      <i class="material-icons" style="font-size: 80px;">account_circle</i>
+      <h2 style="margin: 10px 0 0 0; font-weight: 800;">Mi Perfil</h2>
+      <p style="opacity: 0.9;">Gestiona la información de tu cuenta</p>
+    </div>
+
+    <div class="card-content" style="padding: 40px;">
+      <div class="row">
+        <div class="col s12 m6">
+          <p style="color: #64748B; font-weight: bold; margin-bottom: 5px;">Nombre Completo</p>
+          <h6 style="margin-bottom: 20px; color: #1E293B;">{{ usuario.nombre }}</h6>
+
+          <p style="color: #64748B; font-weight: bold; margin-bottom: 5px;">Correo Electrónico</p>
+          <h6 style="margin-bottom: 20px; color: #1E293B;">{{ usuario.email }}</h6>
+        </div>
+
+        <div class="col s12 m6">
+          <p style="color: #64748B; font-weight: bold; margin-bottom: 5px;">Ubicación</p>
+          <h6 style="margin-bottom: 20px; color: #1E293B;">Bloque {{ usuario.numeroBloque }} - Apto {{ usuario.numeroApartamento }}</h6>
+
+          <p style="color: #64748B; font-weight: bold; margin-bottom: 5px;">Rol de Usuario</p>
+          <span class="chip" style="background: #E2E8F0; color: #475569;">
+            {{ usuario.tipoResidente | titlecase }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="divider" style="margin: 20px 0;"></div>
+      
+      <div class="center-align">
+        <button class="btn-flat" style="color: #64748B; text-transform: none;">Cambiar Contraseña</button>
+      </div>
+    </div>
+  </div>
+</div>

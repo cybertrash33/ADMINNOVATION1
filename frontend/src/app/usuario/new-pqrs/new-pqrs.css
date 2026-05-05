@@ -1,0 +1,220 @@
+.form-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.form-header h3 { margin: 0; font-size: 1.4rem; }
+
+.custom-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background-color: #F8FAFC;
+  color: #334155;
+  margin-top: 8px;
+}
+
+.input-field label {
+  color: #64748B;
+  font-weight: 600;
+  font-size: 0.9rem;
+  position: static; /* Quitamos el efecto flotante molesto de Materialize */
+}
+
+input[type="text"], textarea {
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  padding: 10px 15px !important;
+  box-sizing: border-box !important;
+  margin-top: 8px !important;
+  background-color: #F8FAFC !important;
+}
+
+input[readonly] {
+  background-color: #E2E8F0 !important;
+  color: #475569 !important;
+  cursor: not-allowed !important;
+  opacity: 0.85;
+}
+
+/* Zona de carga de archivos */
+.file-upload-zone {
+  border: 2px dashed #CBD5E1;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  color: #64748B;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 20px 0;
+}
+
+.file-upload-zone:hover {
+  border-color: #00D1B2;
+  background-color: #F0FDFA;
+}
+
+.file-upload-zone i { font-size: 3rem; color: #00D1B2; }
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-cancel {
+  background: #F1F5F9;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  color: #475569;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background: #00D1B2;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 209, 178, 0.3);
+}
+
+/* Mensaje de éxito verde bonito */
+.success-message {
+  background: linear-gradient(135deg, #00D1B2 0%, #00b89c 100%) !important;
+  border-radius: 16px !important;
+  padding: 40px 30px !important;
+  text-align: center !important;
+  color: white !important;
+  box-shadow: 0 10px 40px rgba(0, 209, 178, 0.3) !important;
+  margin: 20px 0 !important;
+  animation: slideIn 0.5s ease-out !important;
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-message > i.material-icons {
+  font-size: 4rem !important;
+  margin-bottom: 20px !important;
+  display: block !important;
+  color: white !important;
+}
+
+.success-content h4 {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 15px 0 !important;
+  color: white !important;
+  text-align: center !important;
+}
+
+.success-content p {
+  font-size: 1.1rem !important;
+  margin: 0 0 25px 0 !important;
+  color: white !important;
+  opacity: 0.95 !important;
+  text-align: center !important;
+}
+
+.success-content strong {
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  padding: 5px 15px !important;
+  border-radius: 8px !important;
+  display: inline-block !important;
+  margin-top: 5px !important;
+  color: white !important;
+}
+
+.btn-ok {
+  background: white !important;
+  color: #00D1B2 !important;
+  border: none !important;
+  padding: 14px 40px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  margin-top: 20px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  display: inline-block !important;
+}
+
+/* Mensaje de error */
+.error-message {
+  background: linear-gradient(135deg, #FF6B6B 0%, #ff4757 100%) !important;
+  border-radius: 16px !important;
+  padding: 30px !important;
+  text-align: center !important;
+  color: white !important;
+  box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3) !important;
+  margin: 20px 0 !important;
+  animation: slideIn 0.5s ease-out !important;
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.error-message > i {
+  font-size: 3rem !important;
+  margin-bottom: 15px !important;
+  display: block !important;
+  color: white !important;
+}
+
+.error-content h4 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 10px 0 !important;
+  color: white !important;
+  text-align: center !important;
+}
+
+.error-content p {
+  font-size: 1rem !important;
+  margin: 0 0 20px 0 !important;
+  color: white !important;
+  opacity: 0.95 !important;
+  text-align: center !important;
+}
+
+.btn-ok-error {
+  background: white !important;
+  color: #FF6B6B !important;
+  border: none !important;
+  padding: 12px 30px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  display: inline-block !important;
+  margin-top: 10px !important;
+}

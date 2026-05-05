@@ -1,0 +1,56 @@
+.login-card {  
+  padding: 40px !important;
+  border-radius: 15px !important;
+  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.08) !important; 
+  width: 120% !important; 
+  background-color: #ffffff;
+  border-left: 4px solid #00D1B2 !important;
+}
+
+
+.login-wrapper {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image:url('/frontend/public/fondo.png');
+  background-size: cover;
+  background-position: center;
+}
+
+h4 {
+  color: #1E3A8A !important;
+  font-weight: 800 !important;
+  font-size: 1.6rem; /* Un poco más compacto */
+  margin: 0 0 5px 0 !important;
+
+}
+
+.input-field {
+  margin-top: 25px !important;
+  margin-bottom: 25px !important; /* Espacio entre los campos */
+}
+
+.btn-ingresar {
+  background-color: #00D1B2 !important;
+  height: 50px !important; /* Altura más estándar */
+  margin-top: 30px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espacio entre texto e icono */
+}
+
+.signup-link {
+  margin-top: 25px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  white-space: normal; /* Permite que el texto se rompa en dos líneas si es necesario */
+}
+
+.signup-link p {
+  margin: 0;
+  line-height: 1.5;
+}

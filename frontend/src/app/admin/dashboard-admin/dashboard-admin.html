@@ -1,0 +1,104 @@
+<div class="dashboard-wrapper">
+  <app-sidebar-admin></app-sidebar-admin>
+
+  <main class="main-viewport">
+    <app-header-admin></app-header-admin>
+
+    <div class="dashboard-content">
+      <!-- Estadísticas Detalladas -->
+      <div class="stats-section">
+        <div class="stats-grid">
+          <!-- Usuarios -->
+          <div class="stat-card stat-usuarios">
+            <div class="stat-header">
+              <div class="stat-icon">
+                <i class="material-icons">people</i>
+              </div>
+              <h3>Usuarios</h3>
+            </div>
+            <div class="stat-details">
+              <div class="stat-item">
+                <span class="stat-label">Total:</span>
+                <span class="stat-value">{{ stats.usuarios?.total || 0 }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Activos:</span>
+                <span class="stat-value">{{ stats.usuarios?.activos || 0 }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Nuevos este mes:</span>
+                <span class="stat-value">{{ stats.usuarios?.nuevosMes || 0 }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PQRS -->
+          <div class="stat-card stat-pqrs">
+            <div class="stat-header">
+              <div class="stat-icon">
+                <i class="material-icons">chat_bubble</i>
+              </div>
+              <h3>PQRS</h3>
+            </div>
+            <div class="stat-details">
+              <div class="stat-item">
+                <span class="stat-label">Total:</span>
+                <span class="stat-value">{{ stats.pqrs?.total || 0 }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Pendientes:</span>
+                <span class="stat-value">{{ stats.pqrs?.pendientes || 0 }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Resueltas este mes:</span>
+                <span class="stat-value">{{ stats.pqrs?.resueltasMes || 0 }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cartelera de Actividades -->
+          <div class="stat-card stat-actividades">
+            <div class="stat-header">
+              <div class="stat-icon">
+                <i class="material-icons">event</i>
+              </div>
+              <h3>Cartelera de Actividades</h3>
+            </div>
+            <div class="stat-details">
+              <div class="stat-item">
+                <span class="stat-label">Total:</span>
+                <span class="stat-value">{{ stats.actividades?.total || 0 }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Activos:</span>
+                <span class="stat-value">{{ stats.actividades?.activos || 0 }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Próximos:</span>
+                <span class="stat-value">{{ stats.actividades?.proximos || 0 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="charts-section">
+        <div class="charts-grid">
+          <div class="chart-card chart-usuarios">
+            <h3>Distribución de Usuarios</h3>
+            <canvas id="usuariosChart"></canvas>
+          </div>
+          <div class="chart-card chart-pqrs">
+            <h3>PQRS por Estado</h3>
+            <canvas id="pqrsChart"></canvas>
+          </div>
+          <div class="chart-card chart-actividades">
+            <h3>Actividades por Mes</h3>
+            <canvas id="actividadesChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

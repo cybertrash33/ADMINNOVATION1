@@ -1,0 +1,101 @@
+<nav>
+    <div class="nav-wrapper navbar-gradient">
+        <!-- Logo y nombre -->
+        <a routerLink="/home" class="brand-logo">
+            <img src="logo.png" alt="Logo" style="margin-left: 50px;">
+            <span class="hide-on-small-only">ViveConecta</span>            
+        </a>
+
+        <!-- Menú a la derecha - visible en desktop -->
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <!-- Home -->
+            <li>
+                <a routerLink="/home">
+                    Home<i class="material-icons right">home</i>
+                </a>
+            </li>
+
+            <li>
+                <a routerLink="/login">
+                    Inicio de Sesión<i class="material-icons right">login</i>
+                </a>
+            </li>
+
+            <li>
+                <a routerLink="/registro">
+                    Registrese<i class="material-icons right">app_registration</i>
+                </a>
+            </li> 
+
+            <!-- Quienes Somos -->
+            <li>
+                <a class="dropdown-trigger" href="javascript:void(0)" data-target="dropdown1">
+                    Quienes Somos<i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </li>
+
+            <!-- Servicios -->
+            <li>
+                <a class="dropdown-trigger" href="javascript:void(0)" data-target="dropdown2">
+                    Servicios<i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </li>
+        </ul>          
+
+        <!-- Menú hamburguesa para móvil -->
+        <a href="javascript:void(0)" data-target="mobile-demo" class="sidenav-trigger left">
+            <i class="material-icons">menu</i>
+        </a>
+    </div>
+</nav>
+
+    <!-- Dropdown Quienes Somos -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a routerLink="/nuestrahistoria">Nuestra Historia</a></li>
+        <li><a routerLink="/misionvision">Misión y Visión</a></li>
+        <li><a routerLink="/equipodirectivo">Equipo Directivo</a></li>
+        <li><a routerLink="/valorescorporativos">Valores Corporativos</a></li>
+    </ul>
+    
+    <!-- Dropdown Servicios -->
+    <ul id="dropdown2" class="dropdown-content">
+        <li><a href="javascript:void(0)">Consultoría</a></li>
+        <li><a href="javascript:void(0)">Desarrollo Web</a></li>
+        <li><a href="javascript:void(0)">Marketing Digital</a></li>
+        <li><a href="javascript:void(0)">Soporte Técnico</a></li>
+    </ul>
+
+
+
+
+<!-- Menú móvil -->
+<ul class="sidenav" id="mobile-demo">
+    <li>
+        <div class="user-view">
+            <div class="background navbar-gradient"></div>
+            <span class="white-text name">ViveConecta</span>
+        </div>
+    </li>
+    
+    <li>
+        <a routerLink="/home" class="sidenav-close">
+            <i class="material-icons">home</i>Home
+        </a>
+    </li>
+    <li>
+        <a routerLink="/login" class="sidenav-close">
+            <i class="material-icons">login</i>Inicio de Sesión
+        </a>
+    </li>
+    <li>
+        <a routerLink="/registro" class="sidenav-close">
+            <i class="material-icons">app_registration</i>Regístrese
+        </a>
+    </li>
+    
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Información</a></li>
+    
+    <li><a routerLink="/nuestrahistoria" class="sidenav-close">Quienes Somos</a></li>
+    <li><a routerLink="/servicios" class="sidenav-close">Servicios</a></li>
+</ul>

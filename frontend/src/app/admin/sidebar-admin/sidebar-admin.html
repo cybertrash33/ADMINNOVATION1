@@ -1,0 +1,33 @@
+<aside class="sidebar-fixed">
+  <div class="brand-details">
+    <span class="brand-title">ViveConecta</span>
+  </div>
+
+  <ul class="nav-links">
+    <li [class.active]="activeRoute === '/dashboard-admin'">
+      <a routerLink="/dashboard-admin"><i class="material-icons">home</i> Dashboard</a>
+    </li>
+    <li [class.active]="activeRoute === '/pqrs-admin'">
+      <a routerLink="/pqrs-admin"><i class="material-icons">chat_bubble</i> PQRS</a>
+    </li>
+    <li [class.active]="activeRoute === '/cartelera-actividades-admin'">
+      <a routerLink="/cartelera-actividades-admin"><i class="material-icons">event</i> Cartelera de Actividades</a>
+    </li>
+    <li [class.active]="activeRoute === '/gestion-usuarios'">
+      <a routerLink="/gestion-usuarios"><i class="material-icons">people</i> Gestión de Usuarios</a>
+    </li>
+
+    <li [class.active]="activeRoute === '/mi-perfil-admin'">
+      <a routerLink="/mi-perfil-admin"><i class="material-icons">person</i> Mi Perfil</a>
+    </li>
+
+    <li>
+      <div class="sidebar-bottom">
+        <button (click)="logout()" class="btn-logout-sidebar">
+          <i class="material-icons">exit_to_app</i>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </li>
+  </ul>
+</aside>

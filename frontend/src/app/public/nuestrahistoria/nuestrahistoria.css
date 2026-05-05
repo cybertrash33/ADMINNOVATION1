@@ -1,0 +1,100 @@
+/* Contenedor de la sección */
+.history-wrapper {
+    background-color: #f8fafc;   
+    min-height: auto; /* No forzamos altura dentro de main-content */
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Evitamos que el contenedor scrollee */
+}
+
+/* La Tarjeta Blanca Profesional */
+.history-card {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    overflow: visible;
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.05) !important;
+    max-height: none;
+    margin: 0 auto !important;
+    border-left: 4px solid #00D1B2 !important;
+}
+.history-content {
+    padding: 50px !important;
+}
+
+/* Badge y Títulos */
+.history-badge {
+    background-color: rgba(0, 209, 178, 0.1);
+    color: #00D1B2;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.history-title {
+    color: #1E3A8A !important;
+    font-weight: 800 !important;
+    font-size: 2.4rem !important;
+    margin: 0 !important;
+    line-height: 1.1;
+}
+
+.history-title .highlight {
+    color: #00D1B2;
+}
+
+.divider-custom {
+    height: 4px;
+    width: 50px;
+    background-color: #00D1B2;
+    margin: 25px 0;
+    border-radius: 2px;
+}
+
+/* Texto de lectura fluida */
+.history-text {
+    color: #475569 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 20px !important;
+    text-align: left;
+}
+
+.footer-note {
+    font-style: italic;
+    font-size: 0.95rem !important;
+    color: #94A3B8 !important;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+}
+
+/* Estilo de la Imagen */
+.history-image-container {
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.history-img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover; /* Ajusta la imagen al contenedor sin deformarla */
+    max-height: calc(100vh - 160px);
+}
+
+/* Ajustes para móviles */
+@media (max-width: 992px) {
+    .history-content {
+        padding: 30px !important;
+    }
+    .history-img {
+        min-height: 250px;
+    }
+}
+
+.no-margin { margin: 0 !important; }

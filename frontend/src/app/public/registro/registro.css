@@ -1,0 +1,119 @@
+/* Contenedor principal */
+.registration-wrapper {
+    background-color: #f8fafc;
+    min-height: 75vh;
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0 10px; /* Subido más */
+    overflow: hidden;
+}
+
+.registration-card.compact-form {
+    overflow: visible;
+    padding: 9px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.08) !important;
+    background: white !important;
+    border-left: 4px solid #00D1B2 !important;
+}
+
+.form-header h4 {
+    color:#1E3A8A !important;
+    font-weight: 800 !important;
+    margin-bottom: 4px !important;
+}
+
+/* EL TRUCO: CSS GRID */
+.form-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 0 20px; /* Espacio horizontal entre columnas */
+    margin-top: 0px;
+}
+
+/* Forzar que los input-fields no tengan márgenes extraños */
+.form-grid-container .input-field {
+    margin: 9px 0 !important;
+    position: relative;
+}
+
+/* Estilo para inputs y selects para que midan lo mismo */
+.form-grid-container input, 
+.form-grid-container .browser-default {
+    height: 2.7rem !important;
+    padding: 0 15px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+    background-color: #f8fafc !important;
+    width: 100% !important;
+}
+
+.form-grid-container input:focus {
+    border-bottom: 1px solid #00D1B2 !important;
+    box-shadow: 0 1px 0 0 #00D1B2 !important;
+}
+
+/* Botón de registro */
+.btn-register {
+    background-color: #00D1B2 !important;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem;
+    text-transform: none !important;
+    margin-top: 18px;
+    height: 45px !important;
+}
+
+.btn-clear {
+    color: #94a3b8 !important;
+    display: block;
+    margin: 9px auto 0;
+    font-size: 1rem;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+    .form-grid-container {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+    }
+}
+
+/* Estilo para el SELECT (Dropdown) */
+.form-grid-container .browser-default {
+    height: 2.7rem !important;
+    padding: 0 15px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    
+    /* CAMBIA ESTOS COLORES A TU GUSTO */
+    background-color: #ffffff !important; /* Fondo blanco para que resalte */
+    color: #334155 !important;           /* Color de texto (Gris oscuro/negro) */
+    cursor: pointer;
+    outline: none;
+}
+
+/* Color cuando el usuario hace clic (Focus) */
+.form-grid-container .browser-default:focus {
+    border: 1px solid #00D1B2 !important; /* Borde turquesa al seleccionar */
+}
+
+/* Estilo para las opciones dentro del dropdown */
+.form-grid-container .browser-default option {
+    color: #334155; /* Color del texto de las opciones */
+    background-color: #ffffff;
+}
+
+/* Cambia el color del texto cuando pasas el mouse en la lista de Materialize */
+.dropdown-content li > span {
+    color: #00D1B2 !important; /* Color verde turquesa */
+}
+
+/* Cambia el color de fondo cuando pasas el mouse */
+.dropdown-content li:hover, .dropdown-content li.active {
+    background-color: #f0fdfa !important; /* Un verde muy clarito de fondo */
+}

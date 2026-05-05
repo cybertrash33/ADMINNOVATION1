@@ -1,0 +1,130 @@
+<div class="dashboard-wrapper">
+  <app-sidebar-admin></app-sidebar-admin>
+
+  <main class="main-viewport">
+    <app-header-admin></app-header-admin>
+
+    <div class="dashboard-card">
+      <div class="card-header-flex">
+        <h3>Usuarios Registrados</h3>
+        <button class="btn-create-pqrs">
+          <i class="material-icons">person_add</i>
+          Nuevo Usuario
+        </button>
+      </div>
+
+      <div *ngIf="loadingUsuarios" class="loading-container">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-green-only">
+            <div class="circle-clipper left"><div class="circle"></div></div>
+            <div class="gap-patch"><div class="circle"></div></div>
+            <div class="circle-clipper right"><div class="circle"></div></div>
+          </div>
+        </div>
+        <p style="margin-top: 20px; color: #64748B;">Cargando usuarios...</p>
+      </div>
+
+      <div *ngIf="!loadingUsuarios && usuariosList.length === 0" class="empty-state">
+        <i class="material-icons empty-icon">people</i>
+        <h4>No hay usuarios registrados</h4>
+      </div>
+
+      <!-- Controles de vista -->
+      <div class="view-controls" *ngIf="!loadingUsuarios && usuariosList.length > 0">
+        <div class="view-toggle">
+          <button [class.active]="vistaActual === 'tabla'" (click)="cambiarVista('tabla')" class="view-btn">
+            <i class="material-icons">table_view</i> Tabla
+          </button>
+          <button [class.active]="vistaActual === 'tarjetas'" (click)="cambiarVista('tarjetas')" class="view-btn">
+            <i class="material-icons">grid_view</i> Tarjetas
+          </button>
+        </div>
+        <div class="pagination-controls">
+          <label>Mostrar:</label>
+          <select [(ngModel)]="itemsPorPagina" class="page-size-select" (change)="cambiarPagina(1)">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Vista Tabla -->
+      <table class="custom-table" *ngIf="!loadingUsuarios && usuariosList.length > 0 && vistaActual === 'tabla'">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Residente</th>
+            <th>Ubicación</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosPaginados">
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <img [src]="usuario.foto || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjIiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik0yMCAyMGMtMiAxLTUgMi04IDItMCAzLTUgNS04IDUtMiAzLTUgNS04IDV6Ii8+PC9zdmc+'" 
+                     alt="Avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                {{ usuario.nombre }}
+              </div>
+            </td>
+            <td>{{ usuario.email }}</td>
+            <td><span class="chip">{{ obtenerTipoUsuario(usuario.tipoUsuario) }}</span></td>
+            <td><span class="chip">{{ usuario.tipoResidente }}</span></td>
+            <td>Bloque {{ usuario.numeroBloque }} - Apto {{ usuario.numeroApartamento }}</td>
+            <td>
+              <div class="usuario-actions">
+                <button class="btn-action btn-edit" title="Editar" (click)="editarUsuario(usuario)">
+                  <i class="material-icons">edit</i>
+                </button>
+                <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarUsuario(usuario)">
+                  <i class="material-icons">delete</i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Vista Tarjetas -->
+      <div *ngIf="!loadingUsuarios && usuariosList.length > 0 && vistaActual === 'tarjetas'" class="usuarios-grid">
+        <div class="usuario-card" *ngFor="let usuario of usuariosPaginados">
+          <div class="usuario-avatar">
+            <img [src]="usuario.foto || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjIiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik0yMCAyMGMtMiAxLTUgMi04IDItMCAzLTUgNS04IDUtMiAzLTUgNS04IDV6Ii8+PC9zdmc+'" alt="Avatar">
+          </div>
+          <div class="usuario-info">
+            <h4>{{ usuario.nombre }}</h4>
+            <p>{{ usuario.email }}</p>
+            <div class="usuario-meta">
+              <span class="chip">{{ obtenerTipoUsuario(usuario.tipoUsuario) }}</span>
+              <span class="chip">{{ usuario.tipoResidente }}</span>
+            </div>
+            <p class="usuario-ubicacion">Bloque {{ usuario.numeroBloque }} - Apto {{ usuario.numeroApartamento }}</p>
+          </div>
+          <div class="usuario-actions">
+            <button class="btn-action btn-edit" title="Editar" (click)="editarUsuario(usuario)">
+              <i class="material-icons">edit</i>
+            </button>
+            <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarUsuario(usuario)">
+              <i class="material-icons">delete</i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paginación -->
+      <div class="pagination" *ngIf="!loadingUsuarios && usuariosList.length > 0 && totalPaginas > 1">
+        <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1" class="page-btn">
+          <i class="material-icons">chevron_left</i>
+        </button>
+        <span class="page-info">Página {{ paginaActual }} de {{ totalPaginas }}</span>
+        <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas" class="page-btn">
+          <i class="material-icons">chevron_right</i>
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,162 @@
+/* ✅ ESTILO GENERAL ACTUALIZADO */
+nav, .brand-logo, nav a {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  color: #1E293B !important; /* Azul cobalto oscuro */
+}
+
+nav {
+  height: 50px;
+  line-height: 50px;
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  z-index: 1001 !important;
+  position: relative;
+}
+
+.brand-logo {
+  line-height: 50px !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo img {
+  height: 50px !important;
+  margin-right: 10px;
+}
+
+/* ✅ RESET DE MATERIALIZE (Elimina el recuadro gris) */
+nav ul li:hover, 
+nav ul li a:hover {
+  background-color: transparent !important; /* Quita el fondo de Materialize */
+}
+
+/* ✅ EFECTO MODERNO DE SUBRAYADO (HOVER) */
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  position: relative;
+  background-color: transparent !important; 
+  transition: color 0.3s ease;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+nav ul li a i,
+nav ul li a .material-icons {
+  vertical-align: middle;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+nav ul li a .material-icons.right {
+  float: none !important;
+  margin-left: 8px;
+}
+
+/* La línea mágica */
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 8px; /* Ajustada para que no se pegue tanto al texto */
+  left: 15px;
+  right: 15px;
+  height: 2px;
+  background-color: #00D1B2; /* Tu verde menta */
+  transform: scaleX(0); 
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: center;
+}
+
+/* Acción al pasar el mouse */
+nav ul li a:hover {
+  color: #00D1B2 !important; /* El texto cambia a verde menta */
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1); /* La línea aparece */
+}
+
+/* ✅ DROPDOWNS (Pulido y Coherente) */
+.dropdown-content {
+  background: #1E293B !important; /* Fondo azul oscuro elegante */
+  border-radius: 8px;
+  z-index: 1002 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  min-width: 180px !important; /* Para que no se vea apretado */
+}
+
+.dropdown-content li {
+  min-height: 40px; /* Tamaño más compacto */
+}
+
+.dropdown-content li > a {
+  color: #F8FAFC !important; /* Texto blanco/gris claro para el fondo oscuro */
+  font-size: 1rem !important;
+  padding: 10px 20px !important;
+  line-height: normal !important;
+  display: block !important;
+}
+
+.dropdown-content li > a:hover {
+  background-color: #00D1B2 !important; /* Fondo verde menta en el dropdown */
+  color: #ffffff !important;
+}
+
+/* ✅ ELIMINAR ESPACIO DEL HERO */
+.nav-wrapper {
+  position: relative;
+  z-index: 1001;
+  padding: 0 20px;
+}
+
+/* ==========================================================
+   ✅ CORRECCIÓN CRÍTICA DE CAPAS (Z-INDEX) PARA MÓVIL
+   ========================================================== */
+
+/* 1. El disparador (hamburguesa) debe estar siempre accesible */
+.sidenav-trigger {
+    display: block !important;
+    cursor: pointer !important;
+    z-index: 1005 !important; 
+    color: #1E293B !important; /* Color coherente con tu diseño */
+}
+
+/* 2. El Menú Lateral debe tener el nivel más alto de todos */
+.sidenav {
+    z-index: 9999 !important; /* Muy por encima del resto */
+    background-color: #ffffff !important;
+}
+
+/* 3. La capa gris (overlay) debe estar justo por debajo del sidenav */
+.sidenav-overlay {
+    z-index: 9998 !important; /* Uno menos que el sidenav */
+}
+
+/* 4. Estilo para los links del menú móvil (para que no se vean vacíos) */
+.sidenav li a {
+    color: #1E293B !important;
+    font-weight: 500;
+    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center;
+    padding: 0 32px !important;
+}
+
+.sidenav li a i {
+    color: #00D1B2 !important; /* Iconos en verde menta para resaltar */
+    margin-right: 15px !important;
+}
+
+/* Evita que el fondo del navbar tape el menú */
+header, main, footer, nav {
+    position: relative;
+}

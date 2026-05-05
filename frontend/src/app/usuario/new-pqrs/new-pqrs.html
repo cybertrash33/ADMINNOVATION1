@@ -1,0 +1,122 @@
+<div class="form-container">
+
+  <div class="dashboard-card form-card">
+
+    <div class="form-header">
+
+      <i class="material-icons mint-text">add_task</i>
+
+      <h3>Radicar Nueva Solicitud</h3>
+
+    </div>
+
+    
+
+    <form class="pqrs-form" (ngSubmit)="enviarFormulario()">
+
+      <input type="hidden" name="usuarioId" [(ngModel)]="nuevaPqrs.usuarioId">
+
+      
+
+      <div class="row">
+
+        <div class="input-field col s12 m6">
+
+          <label class="active">Tipo de Solicitud</label>
+
+          <select class="browser-default custom-select" [(ngModel)]="nuevaPqrs.tipo" name="tipo">
+
+            <option value="">Seleccione una opción</option>
+
+            <option value="peticion">Petición</option>
+
+            <option value="queja">Queja</option>
+
+            <option value="reclamo">Reclamo</option>
+
+            <option value="sugerencia">Sugerencia</option>
+
+          </select>
+
+        </div>
+
+
+
+        <div class="input-field col s12 m6">
+
+          <label for="asunto">Asunto Breve</label>
+
+          <input id="asunto" type="text" placeholder="Ej: Filtración en techo" [(ngModel)]="nuevaPqrs.asunto" name="asunto">
+
+        </div>
+
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="input-field col s12 m6">
+
+          <label for="bloque">Bloque</label>
+
+          <input id="bloque" type="text" [(ngModel)]="nuevaPqrs.bloque" name="bloque" readonly>
+
+        </div>
+
+
+
+        <div class="input-field col s12 m6">
+
+          <label for="numeroApartamento">Número de Apartamento</label>
+
+          <input id="numeroApartamento" type="text" [(ngModel)]="nuevaPqrs.numeroApartamento" name="numeroApartamento" readonly>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="input-field col s12">
+
+          <label for="descripcion">Descripción de los hechos</label>
+
+          <textarea id="descripcion" class="materialize-textarea" placeholder="Describe detalladamente tu solicitud..." [(ngModel)]="nuevaPqrs.descripcion" name="descripcion"></textarea>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="file-upload-zone">
+
+        <i class="material-icons">cloud_upload</i>
+
+        <p>Arrastra una foto o evidencia aquí o <span>haz clic para buscar</span></p>
+
+        <input type="file" class="file-input">
+
+      </div>
+
+
+
+      <div class="form-actions">
+
+        <button type="button" class="btn-cancel">Cancelar</button>
+
+        <button type="submit" class="btn-submit">Enviar Radicado</button>    
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+

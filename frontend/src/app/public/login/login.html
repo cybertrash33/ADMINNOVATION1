@@ -1,0 +1,58 @@
+<div class="login-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m8 offset-m2 l4 offset-l4">
+        <div class="card login-card">
+          <div class="card-content">
+            <span class="card-title center-align">
+              <h4>Iniciar Sesión</h4>
+            </span>
+
+            <div *ngIf="errorMensaje" class="error-message" style="color: #e53935; text-align: center; margin-bottom: 16px; font-weight: 500;">
+              {{ errorMensaje }}
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <div class="input-field"> 
+                <input id="email" 
+                       formControlName="email" 
+                       type="email" 
+                       class="validate"
+                       [class.invalid]="email?.invalid && email?.touched">
+                <label for="email">Correo Electrónico</label>
+                <div *ngIf="email?.invalid && email?.touched" style="color: #e53935; font-size: 0.8rem;">
+                  <span *ngIf="email?.errors?.['required']">El correo es obligatorio</span>
+                  <span *ngIf="email?.errors?.['email']">Ingrese un correo válido</span>
+                </div>
+              </div>
+
+              <div class="input-field">
+                <input id="password" 
+                       formControlName="password" 
+                       type="password" 
+                       class="validate"
+                       [class.invalid]="password?.invalid && password?.touched">
+                <label for="password">Contraseña</label>
+                <div *ngIf="password?.invalid && password?.touched" style="color: #e53935; font-size: 0.8rem;">
+                  <span *ngIf="password?.errors?.['required']">La contraseña es obligatoria</span>
+                  <span *ngIf="password?.errors?.['minlength']">Mínimo 6 caracteres</span>
+                </div>
+              </div>
+
+              <button type="submit" 
+                      class="btn btn-large waves-effect waves-light btn-ingresar"
+                      [disabled]="loginForm.invalid || cargando">
+                <span *ngIf="cargando">Ingresando...</span>
+                <span *ngIf="!cargando">Ingresar <i class="material-icons right">send</i></span>
+              </button>
+            </form>
+
+            <div class="center-align signup-link">
+              <p>¿No tienes cuenta? <a routerLink="/registro">Regístrate aquí</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

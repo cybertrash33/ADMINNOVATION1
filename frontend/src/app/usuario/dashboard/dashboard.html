@@ -1,0 +1,68 @@
+<div class="dashboard-wrapper">
+  <app-sidebar-usuario></app-sidebar-usuario>
+
+  <main class="main-viewport">
+    <app-header-usuario></app-header-usuario>
+
+    <div class="dashboard-content-grid">
+      <div class="column-pqrs">
+        <div class="dashboard-card action-card">
+          <div class="card-header-flex">
+            <h3>Mis PQRS</h3>
+            <button class="btn-create-pqrs" (click)="irANewPqrs()">
+              Radicar Nueva PQRS <i class="material-icons">add_circle</i>
+            </button>
+          </div>
+          <p class="description">Seguimiento de tus solicitudes y estados.</p>
+        </div>
+
+        <div class="dashboard-card table-card">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Radicado</th>
+                <th>Asunto</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pqrs of pqrsUsuario">
+                <td>#PQ-{{ pqrs.numeroRadicado || 'N/A' }}</td>
+                <td>{{ pqrs.asunto }}</td>
+                <td>{{ formatearFecha(pqrs.createdAt) }}</td>
+                <td><span [class]="getEstadoClase(pqrs.estado)">{{ pqrs.estado }}</span></td>
+                <td><a routerLink="/mis-pqrs" class="view-link">Ver Seguimiento</a></td>
+              </tr>
+              <tr *ngIf="pqrsUsuario.length === 0">
+                <td colspan="5" style="text-align: center; padding: 20px; color: #64748B;">No tienes PQRS radicadas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="column-events">
+        <div class="dashboard-card card-events">
+          <div class="card-header-flex">
+            <h3>Cartelera de Actividades</h3>
+            <a routerLink="/cartelera-actividades" class="view-link">Ver todas</a>
+          </div>
+          <div *ngIf="eventosRecientes.length === 0" style="text-align: center; padding: 20px; color: #64748B;">
+            No hay actividades próximas
+          </div>
+          <div class="event-tile" *ngFor="let evento of eventosRecientes">
+            <div class="event-icon-wrap" [class]="getTipoEventoClase(evento.tipo)">
+              <i class="material-icons">{{ getTipoEventoIcon(evento.tipo) }}</i>
+            </div>
+            <div class="event-info">
+              <p class="event-title">{{ evento.titulo }}</p>
+              <span class="event-time">{{ evento.fechaInicio | date:'dd MMM yyyy' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

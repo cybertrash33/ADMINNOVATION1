@@ -1,0 +1,99 @@
+<div class="dashboard-wrapper">
+  <app-sidebar-admin></app-sidebar-admin>
+
+  <main class="main-viewport">
+    <app-header-admin></app-header-admin>
+
+    <div class="container" style="margin-top: 10px; max-width: 1900px; margin-left: auto; margin-right: auto;">
+      <div class="card" style="border-radius: 20px; overflow: hidden; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+        
+        <div style="background: linear-gradient(135deg, #00D1B2, #00B89C); padding: 20px; color: white; text-align: center;">
+          <div style="position: relative; width: 80px; height: 80px; margin: 0 auto 10px;">
+            <img [src]="previewUrl || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjIiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik0yMCAyMGMtMiAxLTUgMi04IDItMCAzLTUgNS04IDUtMiAzLTUgNS04IDV6Ii8+PC9zdmc+'" alt="Foto de perfil" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+            <label for="foto-input" style="position: absolute; bottom: 0; right: 0; background: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+              <i class="material-icons" style="font-size: 16px; color: #00D1B2;">add_a_photo</i>
+            </label>
+            <input type="file" id="foto-input" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+          </div>
+          <h4 style="margin: 8px 0 0 0; font-weight: 700; font-size: 1.5rem;">Mi Información Personal</h4>
+          <p style="margin: 4px 0 0 0; opacity: 0.9; font-size: 0.95rem;">Datos registrados en la plataforma ViveConecta</p>
+          <button *ngIf="selectedFile" (click)="subirFoto()" style="margin-top: 10px; background: white; color: #00D1B2; border: none; padding: 6px 14px; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 0.85rem;">
+            Guardar Foto
+          </button>
+        </div>
+
+        <div class="card-content" style="padding: 25px;" *ngIf="datosUsuario">
+          <div class="row">
+            
+            <div class="col s12 m6" style="border-right: 1px solid #f1f5f9;">
+              <div style="margin-bottom: 15px;">
+                <p style="color: #64748B; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Nombre Completo</p>
+                <h6 style="color: #1E293B; font-weight: 600; margin: 0; font-size: 1.15rem;">{{ datosUsuario?.nombre }}</h6>
+              </div>
+
+              <div style="margin-bottom: 15px;">
+                <p style="color: #64748B; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Documento de Identidad</p>
+                <h6 style="color: #1E293B; margin: 0; font-size: 1rem;">
+                  <span style="color: #94A3B8;">{{ datosUsuario?.tipoDocumento }}:</span> {{ datosUsuario?.numeroDocumento }}
+                </h6>
+              </div>
+
+              <div style="margin-bottom: 15px;">
+                <p style="color: #64748B; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Correo Electrónico</p>
+                <h6 style="color: #1E293B; margin: 0; font-size: 1rem;">{{ datosUsuario?.email }}</h6>
+              </div>
+
+              <div style="margin-bottom: 15px;">
+                <p style="color: #64748B; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Teléfono de Contacto</p>
+                <h6 style="color: #1E293B; margin: 0; font-size: 1rem;">{{ datosUsuario?.telefono || 'No registrado' }}</h6>
+              </div>
+            </div>
+
+            <div class="col s12 m6" style="padding-left: 20px;">
+              <div style="margin-bottom: 15px;">
+                <p style="color: #64748B; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Ubicación en el Conjunto</p>
+                <h6 style="color: #1E293B; font-weight: 600; margin: 0; font-size: 1.15rem;">
+                  Bloque {{ datosUsuario?.numeroBloque }} — Apartamento {{ datosUsuario?.numeroApartamento }}
+                </h6>
+              </div>
+
+              <div style="margin-bottom: 15px;">
+                <p style="color: #64748B; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Tipo de Usuario</p>
+                <span class="chip" style="background: #E2E8F0; color: #475569; font-weight: 500; font-size: 0.95rem; padding: 6px 12px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center;">
+                  {{ datosUsuario?.tipoUsuario }}
+                </span>
+              </div>
+
+              <div style="margin-bottom: 15px;">
+                <p style="color: #64748B; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Relación con el Inmueble</p>
+                <span class="chip" style="background: #CCFBF1; color: #0D9488; font-weight: 600; font-size: 0.95rem; padding: 6px 12px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center;">
+                  {{ datosUsuario?.tipoResidente }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="divider" style="margin: 15px 0;"></div>
+
+          <div class="center-align" style="margin-top: 10px;">
+            <button class="btn-flat" style="color: #00D1B2; font-weight: bold; text-transform: none; font-size: 0.95rem; padding: 8px 16px;">
+              <i class="material-icons left" style="font-size: 18px; margin-right: 6px;">edit</i> Solicitar actualización de datos
+            </button>
+          </div>
+        </div>
+
+        <div class="card-content center-align" *ngIf="!datosUsuario" style="padding: 30px;">
+          <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-green-only">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+          </div>
+          <p style="margin-top: 20px; color: #64748B;">Cargando perfil...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

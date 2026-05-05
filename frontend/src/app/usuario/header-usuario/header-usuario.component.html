@@ -1,0 +1,11 @@
+<div class="content-header">
+  <div class="greeting">
+    <h1>Hola, {{ usuarioActual?.nombre || 'Usuario' }}</h1>
+    <p>Bienvenido a ViveConecta</p>
+  </div>
+  <div class="user-meta">
+    <div class="avatar-frame">
+      <img [src]="usuarioActual?.foto || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjIiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik0yMCAyMGMtMiAxLTUgMi04IDItMCAzLTUgNS04IDUtMiAzLTUgNS04IDV6Ii8+PC9zdmc+'" alt="Avatar">
+    </div>
+  </div>
+</div>

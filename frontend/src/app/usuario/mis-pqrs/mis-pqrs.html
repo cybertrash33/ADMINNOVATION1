@@ -1,0 +1,124 @@
+<div class="dashboard-wrapper">
+  <app-sidebar-usuario></app-sidebar-usuario>
+
+  <main class="main-viewport">
+    <app-header-usuario></app-header-usuario>
+
+    <div class="dashboard-card">
+      <div class="card-header-flex">
+        <h3>Mis PQRS</h3>
+        <button class="btn-create-pqrs" (click)="irANewPqrs()">
+          Radicar Nueva PQRS <i class="material-icons">add_circle</i>
+        </button>
+      </div>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Radicado</th>
+            <th>Tipo</th>
+            <th>Asunto</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pqrs of pqrsUsuario">
+            <td>{{ pqrs.numeroRadicado || 'N/A' }}</td>
+            <td><span [class]="getTipoBadge(pqrs.tipo)">{{ getTipoLabel(pqrs.tipo) }}</span></td>
+            <td>{{ pqrs.asunto }}</td>
+            <td>{{ formatearFecha(pqrs.createdAt) }}</td>
+            <td><span [class]="getEstadoClase(pqrs.estado)">{{ getEstadoLabel(pqrs.estado) }}</span></td>
+            <td><a (click)="verSeguimiento(pqrs)" class="view-link">Ver Seguimiento</a></td>
+          </tr>
+          <tr *ngIf="pqrsUsuario.length === 0">
+            <td colspan="6" style="text-align: center; padding: 20px; color: #64748B;">No tienes PQRS radicadas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Modal de Detalle -->
+  <div class="modal-overlay" *ngIf="selectedPqrs" (click)="cerrarModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h4>Detalle PQRS {{ selectedPqrs.numeroRadicado || 'N/A' }}</h4>
+        <button class="btn-close" (click)="cerrarModal()">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Datos generales -->
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Tipo</span>
+            <span [class]="getTipoBadge(selectedPqrs.tipo)" class="detail-badge">{{ getTipoLabel(selectedPqrs.tipo) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Estado</span>
+            <span [class]="getEstadoClase(selectedPqrs.estado)" class="detail-badge">{{ getEstadoLabel(selectedPqrs.estado) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Fecha de Radicado</span>
+            <span class="detail-value">{{ formatearFecha(selectedPqrs.createdAt) }}</span>
+          </div>
+          <div class="detail-item" *ngIf="selectedPqrs.bloque || selectedPqrs.numeroApartamento">
+            <span class="detail-label">Ubicación</span>
+            <span class="detail-value">Bloque {{ selectedPqrs.bloque || 'N/A' }} - Apto {{ selectedPqrs.numeroApartamento || 'N/A' }}</span>
+          </div>
+        </div>
+
+        <!-- Asunto -->
+        <div class="detail-section">
+          <h5>Asunto</h5>
+          <p class="detail-text">{{ selectedPqrs.asunto }}</p>
+        </div>
+
+        <!-- Descripción -->
+        <div class="detail-section">
+          <h5>Descripción</h5>
+          <p class="detail-text">{{ selectedPqrs.descripcion }}</p>
+        </div>
+
+        <!-- Historial de estados -->
+        <div class="detail-section" *ngIf="selectedPqrs.historialEstados && selectedPqrs.historialEstados.length > 0">
+          <h5>Historial de Estados</h5>
+          <div class="timeline">
+            <div class="timeline-item" *ngFor="let item of selectedPqrs.historialEstados">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span [class]="getEstadoClase(item.estado)" class="timeline-estado">{{ getEstadoLabel(item.estado) }}</span>
+                <span class="timeline-fecha">{{ formatearFecha(item.fecha) }}</span>
+                <span class="timeline-autor" *ngIf="item.autor">por {{ item.autor }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Respuesta del admin -->
+        <div class="detail-section" *ngIf="selectedPqrs.respuesta">
+          <h5>Respuesta</h5>
+          <div class="respuesta-card">
+            <p class="detail-text">{{ selectedPqrs.respuesta }}</p>
+            <span class="respuesta-fecha" *ngIf="selectedPqrs.fechaRespuesta">Respondida el {{ formatearFecha(selectedPqrs.fechaRespuesta) }}</span>
+          </div>
+        </div>
+
+        <!-- Archivo adjunto -->
+        <div class="detail-section" *ngIf="selectedPqrs.archivo">
+          <h5>Archivo Adjunto</h5>
+          <a [href]="selectedPqrs.archivo" target="_blank" class="btn-adjunto">
+            <i class="material-icons">download</i> Descargar Archivo
+          </a>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

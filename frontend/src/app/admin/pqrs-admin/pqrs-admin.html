@@ -1,0 +1,343 @@
+<div class="pqrs-admin-wrapper">
+  <app-sidebar-admin></app-sidebar-admin>
+
+  <main class="main-viewport">
+    <app-header-admin></app-header-admin>
+
+    <div class="pqrs-content">
+      <div class="pqrs-header">
+        <h3>Gestión de PQRS</h3>
+        <p class="subtitle">Solicitudes de los usuarios</p>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="stats-container">
+        <div class="stat-card stat-total">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <i class="material-icons">assignment</i>
+            </div>
+            <h3>Total</h3>
+          </div>
+          <div class="stat-details">
+            <div class="stat-item">
+              <span class="stat-value">{{ estadisticas.total }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card stat-pendiente">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <i class="material-icons">schedule</i>
+            </div>
+            <h3>Pendientes</h3>
+          </div>
+          <div class="stat-details">
+            <div class="stat-item">
+              <span class="stat-value">{{ estadisticas.pendientes }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card stat-proceso">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <i class="material-icons">sync</i>
+            </div>
+            <h3>En Proceso</h3>
+          </div>
+          <div class="stat-details">
+            <div class="stat-item">
+              <span class="stat-value">{{ estadisticas.enProceso }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card stat-resuelto">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <i class="material-icons">check_circle</i>
+            </div>
+            <h3>Resueltos</h3>
+          </div>
+          <div class="stat-details">
+            <div class="stat-item">
+              <span class="stat-value">{{ estadisticas.resueltos }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card stat-cerrado">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <i class="material-icons">lock</i>
+            </div>
+            <h3>Cerrados</h3>
+          </div>
+          <div class="stat-details">
+            <div class="stat-item">
+              <span class="stat-value">{{ estadisticas.cerrados }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <div class="pqrs-filters">
+        <div class="filter-group">
+          <label>Filtrar por estado:</label>
+          <select [(ngModel)]="filtroEstado" class="filter-select" (change)="filtrarPqrs()">
+            <option value="">Todos los estados</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="en_proceso">En Proceso</option>
+            <option value="resuelto">Resuelto</option>
+            <option value="cerrado">Cerrado</option>
+            <option value="rechazado">Rechazado</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Filtrar por tipo:</label>
+          <select [(ngModel)]="filtroTipo" class="filter-select" (change)="filtrarPqrs()">
+            <option value="">Todos los tipos</option>
+            <option value="peticion">Petición</option>
+            <option value="queja">Queja</option>
+            <option value="reclamo">Reclamo</option>
+            <option value="sugerencia">Sugerencia</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Filtrar por prioridad:</label>
+          <select [(ngModel)]="filtroPrioridad" class="filter-select" (change)="filtrarPqrs()">
+            <option value="">Todas las prioridades</option>
+            <option value="baja">Baja</option>
+            <option value="media">Media</option>
+            <option value="alta">Alta</option>
+            <option value="urgente">Urgente</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Buscar por usuario:</label>
+          <input type="text" [(ngModel)]="filtroUsuario" class="filter-input" placeholder="Nombre del usuario" (input)="filtrarPqrs()">
+        </div>
+      </div>
+
+      <!-- Controles de vista -->
+      <div class="view-controls">
+        <div class="view-toggle">
+          <button [class.active]="vistaActual === 'tabla'" (click)="cambiarVista('tabla')" class="view-btn">
+            <i class="material-icons">table_view</i> Tabla
+          </button>
+          <button [class.active]="vistaActual === 'tarjetas'" (click)="cambiarVista('tarjetas')" class="view-btn">
+            <i class="material-icons">grid_view</i> Tarjetas
+          </button>
+        </div>
+        <div class="pagination-controls">
+          <label>Mostrar:</label>
+          <select [(ngModel)]="itemsPorPagina" class="page-size-select" (change)="cambiarPagina(1)">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Vista Tabla -->
+      <table class="custom-table" *ngIf="vistaActual === 'tabla'">
+        <thead>
+          <tr>
+            <th (click)="ordenar('createdAt')">Radicado <span class="sort-icon">↕</span></th>
+            <th (click)="ordenar('tipo')">Tipo <span class="sort-icon">↕</span></th>
+            <th (click)="ordenar('prioridad')">Prioridad <span class="sort-icon">↕</span></th>
+            <th (click)="ordenar('usuarioId')">Usuario <span class="sort-icon">↕</span></th>
+            <th (click)="ordenar('asunto')">Asunto <span class="sort-icon">↕</span></th>
+            <th (click)="ordenar('createdAt')">Fecha <span class="sort-icon">↕</span></th>
+            <th (click)="ordenar('estado')">Estado <span class="sort-icon">↕</span></th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pqrs of pqrsPaginadas">
+            <td>{{ pqrs.numeroRadicado || 'N/A' }}</td>
+            <td><span [class]="getTipoBadge(pqrs.tipo)">{{ getTipoLabel(pqrs.tipo) }}</span></td>
+            <td><span [class]="getPrioridadClase(pqrs.prioridad)">{{ getPrioridadLabel(pqrs.prioridad) }}</span></td>
+            <td>{{ pqrs.usuarioId?.nombre || 'N/A' }} {{ pqrs.usuarioId?.apellido || '' }}</td>
+            <td>{{ pqrs.asunto }}</td>
+            <td>{{ formatearFecha(pqrs.createdAt) }}</td>
+            <td><span [class]="getEstadoClase(pqrs.estado)">{{ pqrs.estado }}</span></td>
+            <td><a (click)="verPqrs(pqrs)" class="view-link">Ver Detalles</a></td>
+          </tr>
+          <tr *ngIf="pqrsPaginadas.length === 0">
+            <td colspan="8" style="text-align: center; padding: 20px;">No hay PQRS registradas</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Vista Tarjetas -->
+      <div class="cards-container" *ngIf="vistaActual === 'tarjetas'">
+        <div class="pqrs-card" *ngFor="let pqrs of pqrsPaginadas">
+          <div class="card-header">
+            <span class="card-radicado">{{ pqrs.numeroRadicado || 'N/A' }}</span>
+            <span [class]="getEstadoClase(pqrs.estado)" class="card-estado">{{ pqrs.estado }}</span>
+          </div>
+          <div class="card-body">
+            <div class="card-row">
+              <span [class]="getTipoBadge(pqrs.tipo)">{{ getTipoLabel(pqrs.tipo) }}</span>
+              <span [class]="getPrioridadClase(pqrs.prioridad)">{{ getPrioridadLabel(pqrs.prioridad) }}</span>
+            </div>
+            <h4>{{ pqrs.asunto }}</h4>
+            <p class="card-usuario">{{ pqrs.usuarioId?.nombre || 'N/A' }} {{ pqrs.usuarioId?.apellido || '' }}</p>
+            <p class="card-fecha">{{ formatearFecha(pqrs.createdAt) }}</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn-card-action" (click)="verPqrs(pqrs)">Ver Detalles</button>
+          </div>
+        </div>
+        <div *ngIf="pqrsPaginadas.length === 0" class="empty-cards">
+          <p>No hay PQRS registradas</p>
+        </div>
+      </div>
+
+      <!-- Paginación -->
+      <div class="pagination" *ngIf="totalPaginas > 1">
+        <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1" class="page-btn">
+          <i class="material-icons">chevron_left</i>
+        </button>
+        <span class="page-info">Página {{ paginaActual }} de {{ totalPaginas }}</span>
+        <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas" class="page-btn">
+          <i class="material-icons">chevron_right</i>
+        </button>
+      </div>
+
+      <!-- Modal con pestañas -->
+      <div class="modal-overlay" *ngIf="selectedPqrs" (click)="cancelarSeleccion()">
+        <div class="modal-content modal-large" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h4>Detalles de PQRS {{ selectedPqrs.numeroRadicado || 'N/A' }}</h4>
+            <button class="btn-close" (click)="cancelarSeleccion()">
+              <i class="material-icons">close</i>
+            </button>
+          </div>
+
+          <!-- Pestañas -->
+          <div class="tabs-container">
+            <button [class.active]="activeTab === 'detalles'" (click)="cambiarTab('detalles')" class="tab-btn">Detalles</button>
+            <button [class.active]="activeTab === 'historial'" (click)="cambiarTab('historial')" class="tab-btn">Historial</button>
+            <button [class.active]="activeTab === 'notas'" (click)="cambiarTab('notas')" class="tab-btn">Notas</button>
+            <button [class.active]="activeTab === 'respuesta'" (click)="cambiarTab('respuesta')" class="tab-btn">Respuesta</button>
+          </div>
+
+          <!-- Contenido de pestañas -->
+          <div class="modal-body">
+            <!-- Pestaña Detalles -->
+            <div *ngIf="activeTab === 'detalles'" class="tab-content">
+              <div class="detail-row" *ngIf="selectedPqrs.tipo">
+                <strong>Tipo:</strong>
+                <span [class]="getTipoBadge(selectedPqrs.tipo)">{{ getTipoLabel(selectedPqrs.tipo) }}</span>
+              </div>
+              <div class="detail-row" *ngIf="selectedPqrs.prioridad">
+                <strong>Prioridad:</strong>
+                <span [class]="getPrioridadClase(selectedPqrs.prioridad)">{{ getPrioridadLabel(selectedPqrs.prioridad) }}</span>
+              </div>
+              <div class="detail-row">
+                <strong>Estado actual:</strong>
+                <span [class]="getEstadoClase(selectedPqrs.estado)">{{ selectedPqrs.estado }}</span>
+              </div>
+              <div class="detail-row">
+                <strong>Usuario:</strong>
+                <p>{{ selectedPqrs.usuarioId?.nombre }} {{ selectedPqrs.usuarioId?.apellido || '' }}</p>
+              </div>
+              <div class="detail-row">
+                <strong>Fecha:</strong>
+                <p>{{ formatearFecha(selectedPqrs.createdAt) }}</p>
+              </div>
+              <div class="detail-row">
+                <strong>Asunto:</strong>
+                <p>{{ selectedPqrs.asunto }}</p>
+              </div>
+              <div class="detail-row">
+                <strong>Descripción:</strong>
+                <p>{{ selectedPqrs.descripcion }}</p>
+              </div>
+              <div class="detail-row" *ngIf="tieneArchivo(selectedPqrs.archivo)">
+                <strong>Archivo adjunto:</strong>
+                <button class="btn-view-file" (click)="descargarArchivo(selectedPqrs.archivo)">
+                  <i class="material-icons">download</i> Descargar
+                </button>
+              </div>
+              <div class="detail-row" *ngIf="selectedPqrs.respuesta">
+                <strong>Respuesta enviada:</strong>
+                <p>{{ selectedPqrs.respuesta }}</p>
+              </div>
+              <div class="estado-update">
+                <label>Actualizar estado:</label>
+                <select [(ngModel)]="selectedEstado" class="estado-select">
+                  <option value="pendiente">Pendiente</option>
+                  <option value="en_proceso">En Proceso</option>
+                  <option value="resuelto">Resuelto</option>
+                  <option value="cerrado">Cerrado</option>
+                  <option value="rechazado">Rechazado</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Pestaña Historial -->
+            <div *ngIf="activeTab === 'historial'" class="tab-content">
+              <div class="historial-timeline">
+                <div *ngFor="let item of selectedPqrs.historialEstados" class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <span [class]="getEstadoClase(item.estado)" class="timeline-estado">{{ item.estado }}</span>
+                    <span class="timeline-fecha">{{ formatearFecha(item.fecha) }}</span>
+                    <span class="timeline-autor">por {{ item.autor }}</span>
+                  </div>
+                </div>
+                <div *ngIf="!selectedPqrs.historialEstados || selectedPqrs.historialEstados.length === 0" class="empty-historial">
+                  <p>No hay historial de cambios</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pestaña Notas -->
+            <div *ngIf="activeTab === 'notas'" class="tab-content">
+              <div class="notas-list">
+                <div *ngFor="let nota of selectedPqrs.notasInternas" class="nota-item">
+                  <div class="nota-header">
+                    <span class="nota-autor">{{ nota.autor }}</span>
+                    <span class="nota-fecha">{{ formatearFecha(nota.fecha) }}</span>
+                  </div>
+                  <p class="nota-texto">{{ nota.nota }}</p>
+                </div>
+                <div *ngIf="!selectedPqrs.notasInternas || selectedPqrs.notasInternas.length === 0" class="empty-notas">
+                  <p>No hay notas internas</p>
+                </div>
+              </div>
+              <div class="agregar-nota">
+                <textarea [(ngModel)]="nuevaNota" class="nota-input" placeholder="Escribe una nota interna..." rows="3"></textarea>
+                <button (click)="agregarNota()" class="btn-add-nota">Agregar Nota</button>
+              </div>
+            </div>
+
+            <!-- Pestaña Respuesta -->
+            <div *ngIf="activeTab === 'respuesta'" class="tab-content">
+              <div *ngIf="selectedPqrs.respuesta" class="respuesta-enviada">
+                <strong>Respuesta enviada el {{ formatearFecha(selectedPqrs.fechaRespuesta) }}:</strong>
+                <p>{{ selectedPqrs.respuesta }}</p>
+              </div>
+              <div class="form-respuesta">
+                <label>Responder al usuario:</label>
+                <textarea [(ngModel)]="respuestaTexto" class="respuesta-input" placeholder="Escribe tu respuesta..." rows="5"></textarea>
+                <button (click)="responderPqrs()" class="btn-send-respuesta">Enviar Respuesta</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn-delete" (click)="eliminarPqrs(selectedPqrs._id)">
+              <i class="material-icons">delete</i> Eliminar
+            </button>
+            <button class="btn-cancel" (click)="cancelarSeleccion()">Cancelar</button>
+            <button class="btn-confirm" (click)="confirmarActualizacionEstado()" *ngIf="activeTab === 'detalles'">Actualizar Estado</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

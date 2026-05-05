@@ -1,0 +1,82 @@
+<div class="registration-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m10 offset-m1 l8 offset-l2">
+        <div class="card registration-card compact-form">
+          <div class="form-header">
+            <h4>Crear Cuenta</h4>
+            <p>Únete a la comunidad de ViveConecta</p>
+          </div>
+
+          <form (ngSubmit)="registrar()">
+            <div class="form-grid-container">
+              
+              <div class="input-field">
+                <input id="nombre" type="text" [(ngModel)]="usuario.nombre" name="nombre" placeholder="Nombre completo *" required>
+              </div>
+              <div class="input-field">
+                <input id="email" type="email" [(ngModel)]="usuario.email" name="email" placeholder="Correo electrónico *" required>
+              </div>
+
+              <div class="input-field">
+                <select id="tipoDocumento" [(ngModel)]="usuario.tipoDocumento" name="tipoDocumento" class="browser-default" required>
+                  <option value="" disabled selected>Tipo de documento *</option>
+                  <option value="cc">CC</option>
+                  <option value="ce">CE</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <input id="numeroDocumento" type="number" [(ngModel)]="usuario.numeroDocumento" name="numeroDocumento" placeholder="Número de documento *" required>
+              </div>
+
+              <div class="input-field">
+                <input id="telefono" type="tel" [(ngModel)]="usuario.telefono" name="telefono" placeholder="Teléfono *" required>
+              </div>
+              <div class="input-field">
+                <select id="tipoUsuario" [(ngModel)]="usuario.tipoUsuario" name="tipoUsuario"  required>
+                  <option value="" disabled selected>Tipo de usuario *</option>
+                  <option value="Administrador/Empleado">Administrador/Empleado</option>
+                  <option value="Residente/Propietario">Residente/Propietario</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <select id="tipoResidente" [(ngModel)]="usuario.tipoResidente" name="tipoResidente"  required>
+                  <option value="" disabled selected>Tipo de residente *</option>
+                  <option value="propietario">Propietario</option>
+                  <option value="arrendatario">Arrendatario</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <select id="conjuntoResidencial" [(ngModel)]="usuario.conjuntoResidencial" name="conjuntoResidencial" class="browser-default" required>
+                  <option value="" disabled selected>Conjunto residencial *</option>
+                  <option value="Reservas de San David 1">Reservas de San David 1</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <input id="numeroBloque" type="text" [(ngModel)]="usuario.numeroBloque" name="numeroBloque" placeholder="Número de bloque *" required>
+              </div>
+
+              <div class="input-field">
+                <input id="numeroApartamento" type="text" [(ngModel)]="usuario.numeroApartamento" name="numeroApartamento" placeholder="Número de apartamento *" required>
+              </div>
+              <div class="input-field">
+                <input id="password" type="password" [(ngModel)]="usuario.password" name="password" placeholder="Contraseña *" required>
+              </div>
+
+            </div>
+
+            <div class="btn-container center-align">
+              <button class="btn btn-large btn-register waves-effect waves-light" type="submit">
+                Registrar Usuario
+              </button>
+              <button class="btn-flat btn-clear waves-effect" type="button" (click)="limpiarFormulario()">
+                Limpiar Formulario
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

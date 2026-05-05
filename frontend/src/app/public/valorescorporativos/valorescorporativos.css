@@ -1,0 +1,125 @@
+/* Contenedor principal */
+.values-wrapper {
+    background-color: #f8fafc;
+    min-height: auto;
+    display: flex;
+    align-items: center; /* Centrado vertical para que no haya scroll */
+    padding: 10px 0;
+}
+
+.section-header {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.history-title {
+    color: #1E3A8A !important;
+    font-weight: 800 !important;
+    font-size: 2.2rem !important;
+    margin: 10px 0 !important;
+}
+
+.highlight { color: #00D1B2; }
+
+/* Estilo de las 7 Tarjetas */
+.value-card-mini {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.04) !important;
+    transition: all 0.3s ease;
+    height: 153px; /* Altura controlada - 10% menos */
+    margin-bottom: 20px !important;
+    border: 1px solid #f1f5f9 !important;
+}
+
+.value-card-1 {
+    border-left: 4px solid #00D1B2 !important;
+}
+
+.value-card-2 {
+    border-left: 4px solid #1E293B !important;
+}
+
+.value-card-3 {
+    border-left: 4px solid #60A5FA !important;
+}
+
+.value-card-4 {
+    border-left: 4px solid #FFB800 !important;
+}
+
+.value-card-5 {
+    border-left: 4px solid #FF6B6B !important;
+}
+
+.value-card-6 {
+    border-left: 4px solid #64748B !important;
+}
+
+.value-card-7 {
+    border-left: 4px solid #8B5CF6 !important;
+}
+
+.value-card-mini:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 209, 178, 0.12) !important;
+    border-color: #00D1B2 !important;
+}
+
+.value-card-mini .card-content {
+    padding: 20px !important;
+    text-align: center;
+}
+
+/* Iconografía */
+.val-icon {
+    color: #00D1B2;
+    font-size: 2.2rem !important;
+    margin-bottom: 4px;
+}
+
+.value-card-mini h6 {
+    color: #1E3A8A;
+    font-weight: 800;
+    margin: 3px 0;
+    font-size: 1.1rem;
+}
+
+.value-card-mini p {
+    font-size: 0.85rem;
+    color: #64748B;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Tarjeta Destacada (Integridad) */
+.highlight-card {
+    background: linear-gradient(145deg, #ffffff, #f4fffe) !important;
+    border: 1px solid #00D1B2 !important;
+}
+
+/* Elementos decorativos */
+.divider-custom.center {
+    height: 4px;
+    width: 45px;
+    background: #00D1B2;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+.history-badge {
+    background-color: rgba(0, 209, 178, 0.1);
+    color: #00D1B2;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .value-card-mini { height: auto; }
+    .values-wrapper { display: block; }
+}

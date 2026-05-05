@@ -1,0 +1,91 @@
+/* Contenedor principal */
+.mission-vision-wrapper {
+    background-color: #ffffff;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.mission-vision-wrapper .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.mission-vision-wrapper .section-header {
+    margin-top: 0 !important;
+}
+
+.section-header {
+    margin-bottom: 10px;
+}
+
+/* Estilo de las Cards */
+.mv-card {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.05) !important;
+    border: none !important;
+    height: 100%; /* Para que ambas cards midan lo mismo */
+    transition: transform 0.3s ease;
+}
+
+.mv-card-mission {
+    border-left: 4px solid #00D1B2 !important;
+}
+
+.mv-card-vision {
+    border-left: 4px solid #1E3A8A !important;
+}
+
+.mv-card:hover {
+    transform: translateY(-10px);
+}
+
+.mv-card .card-content {
+    padding: 80px !important;
+    text-align: center;
+    color: #475569 !important;
+}
+
+/* Iconos circulares estilo Startup */
+.icon-circle {
+    background-color: rgba(0, 209, 178, 0.1);
+    color: #00D1B2;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.icon-circle i {
+    font-size: 35px;
+    vertical-align: middle;
+}
+
+/* Tipografía */
+.mv-card h3 {
+    color: #1E3A8A;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.mv-card p {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Reutilizamos el badge de la página anterior */
+.history-badge {
+    background-color: rgba(0, 209, 178, 0.1);
+    color: #00D1B2;
+    padding: 0px 10px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,59 @@
+.main-footer {
+    background-color: #1E293B;
+    color: #F8FAFC;
+    padding: 15px 0 10px 0; /* Un poco más de aire interno, pero... */
+    margin-top: 0; /* 🚩 ELIMINADO el margen que empujaba todo */
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 🚩 Cambiado a center para que sea más bajito */
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-brand h2 {
+    color: #00D1B2;
+    font-size: 1.6rem; /* Un poco más pequeño aún */
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.footer-brand p {
+    font-size: 1rem; /* Slagan más pequeño */
+    color: #94A3B8;
+    margin: 0;
+}
+
+.footer-contact h4 {
+    display: none; /* 🚩 Ocultamos el título "Contacto" para ganar altura */
+}
+
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* 🚩 Cambiamos columnas por flex horizontal */
+    gap: 20px;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size:1rem; /* Letra de contacto más pequeña */
+    color: #94A3B8;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 0px;
+    font-size: 0.9rem;
+    color: #586b8a;
+}

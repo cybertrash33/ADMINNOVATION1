@@ -1,0 +1,28 @@
+<aside class="sidebar-fixed">
+  <div class="brand-details">
+    <span class="brand-title">ViveConecta</span>
+  </div>
+
+  <ul class="nav-links">
+    <li [class.active]="activeRoute === '/dashboard'">
+      <a routerLink="/dashboard"><i class="material-icons">home</i> Dashboard</a>
+    </li>
+    <li [class.active]="activeRoute === '/cartelera-actividades'">
+      <a routerLink="/cartelera-actividades"><i class="material-icons">event</i> Cartelera</a>
+    </li>
+    <li [class.active]="activeRoute === '/mis-pqrs'">
+      <a routerLink="/mis-pqrs"><i class="material-icons">chat_bubble</i> Mis PQRS</a>
+    </li>
+    <li [class.active]="activeRoute === '/mi-perfil'">
+      <a routerLink="/mi-perfil"><i class="material-icons">person</i> Mi Perfil</a>
+    </li>
+    <li>
+      <div class="sidebar-bottom">
+        <button (click)="logout()" class="btn-logout-sidebar">
+          <i class="material-icons">exit_to_app</i>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </li>
+  </ul>
+</aside>

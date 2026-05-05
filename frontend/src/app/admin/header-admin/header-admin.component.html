@@ -1,0 +1,14 @@
+<header class="content-header">
+  <div class="greeting">
+    <h1>Bienvenido, {{ usuarioActual?.nombre || 'Admin' }}</h1>
+    <p><i class="material-icons" style="font-size: 14px; vertical-align: middle;">location_on</i> 
+       {{ usuarioActual?.conjuntoResidencial || 'Administración' }}
+    </p>
+  </div>
+
+  <div class="user-meta">
+    <div class="avatar-frame">
+      <img [src]="usuarioActual?.foto || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjIiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik0yMCAyMGMtMiAxLTUgMi04IDItMCAzLTUgNS04IDUtMiAzLTUgNS04IDV6Ii8+PC9zdmc+'" alt="Perfil">
+    </div>
+  </div>
+</header>

@@ -1,0 +1,25 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+ 
+}
+
+.main-content {
+    flex: 1; 
+    position: relative; 
+    z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+header, footer {
+    position: relative;
+    z-index: 1;
+}
+
+

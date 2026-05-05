@@ -1,0 +1,66 @@
+<div class="cartelera-wrapper">
+  <app-sidebar-admin></app-sidebar-admin>
+
+  <main class="main-viewport">
+    <app-header-admin></app-header-admin>
+
+    <div class="cartelera-content">
+      <div class="events-header">
+        <div>
+          <h3>Cartelera de Actividades</h3>
+          <p class="subtitle-events">Gestión de eventos y avisos</p>
+        </div>
+        <div class="events-actions">
+          <select class="filter-select" [(ngModel)]="filtroTipo" (ngModelChange)="aplicarFiltros()">
+            <option value="">Todos los tipos</option>
+            <option value="maintenance">Mantenimiento</option>
+            <option value="meeting">Reunión</option>
+            <option value="announcement">Aviso</option>
+          </select>
+          <select class="filter-select" [(ngModel)]="ordenarPor" (ngModelChange)="aplicarFiltros()">
+            <option value="fecha">Fecha</option>
+            <option value="titulo">Título</option>
+          </select>
+          <button class="btn-create-pqrs" routerLink="/nuevo-evento">
+            <i class="material-icons">add</i>
+            Nuevo Evento
+          </button>
+        </div>
+      </div>
+
+      <div class="events-list">
+        <div class="event-item" *ngFor="let evento of eventosPaginados" [class]="getTipoEventoClase(evento.tipo)">
+          <div class="event-icon">
+            <i class="material-icons">{{ getTipoEventoIcon(evento.tipo) }}</i>
+          </div>
+          <div class="event-content">
+            <p class="event-title">{{ evento.titulo }}</p>
+            <div class="event-details">
+              <span class="event-date"><i class="material-icons">calendar_today</i> {{ evento.fechaInicio }} {{ evento.fechaFin !== evento.fechaInicio ? '- ' + evento.fechaFin : '' }}</span>
+              <span class="event-time"><i class="material-icons">schedule</i> {{ evento.horaInicio }} - {{ evento.horaFin }}</span>
+            </div>
+            <p class="event-description">{{ evento.descripcion }}</p>
+          </div>
+          <div class="event-actions">
+            <button class="btn-action btn-edit" title="Editar" (click)="editarEvento(evento._id)">
+              <i class="material-icons">edit</i>
+            </button>
+            <button class="btn-action btn-delete" title="Eliminar" (click)="eliminarEvento(evento._id)">
+              <i class="material-icons">delete</i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination" *ngIf="eventosFiltrados.length > 0">
+        <button class="pagination-btn" (click)="paginaAnterior()" [disabled]="paginaActual === 1">
+          <i class="material-icons">chevron_left</i>
+        </button>
+        <span class="pagination-info">Página {{ paginaActual }} de {{ totalPaginas() }}</span>
+        <button class="pagination-btn" (click)="paginaSiguiente()" [disabled]="paginaActual === totalPaginas()">
+          <i class="material-icons">chevron_right</i>
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,209 @@
+:host {
+  --cobalt: #1E293B;
+  --mint: #00D1B2;
+  --bg-slate: #F8FAFC;
+  --text-main: #334155;
+  --text-muted: #64748B;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  background-color: var(--bg-slate);
+  min-height: 100%;
+}
+
+.main-viewport {
+  margin-left: 260px;
+  flex: 1;
+  padding: 0 20px 20px 20px;
+}
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.events-header h3 {
+  color: var(--cobalt);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.subtitle-events {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.event-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.event-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.event-maintenance .event-icon {
+  background: #FEF3C7;
+}
+
+.event-maintenance .event-icon i {
+  color: #92400E;
+}
+
+.event-meeting .event-icon {
+  background: #DBEAFE;
+}
+
+.event-meeting .event-icon i {
+  color: #1E40AF;
+}
+
+.event-announcement .event-icon {
+  background: #D1FAE5;
+}
+
+.event-announcement .event-icon i {
+  color: #065F46;
+}
+
+.event-icon i {
+  font-size: 24px;
+}
+
+.event-content {
+  flex: 1;
+}
+
+.event-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.event-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-important {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.badge-maintenance {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.badge-meeting {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.badge-announcement {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.event-title {
+  color: var(--cobalt);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.event-details {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.event-date,
+.event-time {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.event-date i,
+.event-time i {
+  font-size: 16px;
+}
+
+.event-description {
+  color: var(--text-main);
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.btn-view-all-events {
+  background: linear-gradient(135deg, var(--mint), #00B89C);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px auto 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-view-all-events:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 209, 178, 0.3);
+}
+
+@media (max-width: 768px) {
+  .sidebar-fixed {
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+
+  .main-viewport {
+    margin-left: 0;
+    padding: 0 20px 20px 20px;
+  }
+
+  .events-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

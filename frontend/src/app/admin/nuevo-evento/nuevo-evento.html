@@ -1,0 +1,57 @@
+<div class="nuevo-evento-wrapper">
+  <app-sidebar-admin></app-sidebar-admin>
+
+  <main class="main-viewport">
+    <app-header-admin></app-header-admin>
+
+    <div class="nuevo-evento-content">
+      <div class="card nuevo-evento-card">
+        <div class="form-header">
+          <h4>{{ tituloFormulario }}</h4>
+        </div>
+
+        <form (ngSubmit)="crearEvento()">
+          <div class="form-grid-container">
+            <div class="input-field">
+              <input id="titulo" type="text" [(ngModel)]="evento.titulo" name="titulo" placeholder="Título del evento *" required>
+            </div>
+
+            <div class="input-field">
+              <select id="tipo" [(ngModel)]="evento.tipo" name="tipo" class="browser-default" required>
+                <option value="" disabled selected>Tipo de evento *</option>
+                <option value="maintenance">Mantenimiento</option>
+                <option value="meeting">Reunión</option>
+                <option value="announcement">Aviso</option>
+              </select>
+            </div>
+
+            <div class="input-field-row">
+              <div class="input-field">
+                <input id="fechaInicio" type="datetime-local" [(ngModel)]="evento.fechaInicio" name="fechaInicio" required>
+              </div>
+              <div class="input-field">
+                <input id="fechaFin" type="datetime-local" [(ngModel)]="evento.fechaFin" name="fechaFin" required>
+              </div>
+            </div>
+
+            <div class="input-field">
+              <textarea id="descripcion" [(ngModel)]="evento.descripcion" name="descripcion" placeholder="Descripción del evento *" rows="2" required></textarea>
+            </div>
+          </div>
+
+          <div class="btn-container center-align">
+            <button class="btn btn-large btn-create-event waves-effect waves-light" type="submit">
+              Crear Evento
+            </button>
+            <button class="btn-flat btn-clear waves-effect" type="button" (click)="limpiarFormulario()">
+              Limpiar Formulario
+            </button>
+            <button class="btn-flat btn-cancel waves-effect" type="button" routerLink="/cartelera-actividades-admin">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

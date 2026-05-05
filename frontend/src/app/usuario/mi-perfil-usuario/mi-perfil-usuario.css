@@ -1,0 +1,25 @@
+:host {
+  --cobalt: #1E293B;
+  --mint: #00D1B2;
+  --bg-slate: #F8FAFC;
+  --text-main: #334155;
+  --text-muted: #64748B;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  background-color: white;
+  height: 75vh;
+  overflow: hidden;
+  }
+
+.main-viewport {
+  margin-left: 260px;
+  flex-grow: 1;
+  padding: 0 20px 20px 20px;
+  height: calc(80vh - 60px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
